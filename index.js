@@ -11,6 +11,8 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
+var pushConfig = {};
+
 if (process.env.FCM_API_KEY) {
     pushConfig['android'] = { apiKey: process.env.FCM_API_KEY || ''};
 }
