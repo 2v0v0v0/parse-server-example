@@ -12,7 +12,6 @@ if (!databaseUri) {
 }
 
 
-
 var api = new ParseServer({
   push: {
     android: {
