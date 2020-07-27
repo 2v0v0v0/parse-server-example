@@ -2,9 +2,9 @@ Parse.Cloud.define('hello', function(req, res) {
 	var user = req.user;
 
     var pushQuery = new Parse.Query(Parse.Installation);
-    pushQuery..equalTo("user",user);
+    pushQuery.equalTo("user",user);
 
-    return Parse.Push.send({
+    Parse.Push.send({
         where: pushQuery,
         data: {
             alert: "Your push message here!"
@@ -20,5 +20,5 @@ Parse.Cloud.define('hello', function(req, res) {
         }
     });
 
-    //return 'Hi Foodiee!';
+    return user.username;
 });
