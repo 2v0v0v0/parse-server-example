@@ -6,7 +6,7 @@ Parse.Cloud.define('hello', function(req, res) {
     var pushQuery = new Parse.Query(Parse.Installation);
     pushQuery.equalTo("user",user);
 
-    Parse.Push.send({
+    return Parse.Push.send({
         where: pushQuery,
         data: {
             alert: "message from " + user.get("username")  + " to" + params.otherUser
