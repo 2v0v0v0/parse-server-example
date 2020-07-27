@@ -1,18 +1,24 @@
 Parse.Cloud.define('hello', function(req, res) {
-	var pushQuery = new Parse.Query(Parse.Installation);
-// pushQuery.containedIn("user", userlist);
+	var user = req.user;
 
-	return Parse.Push.send({
-		where: pushQuery, 
-		data: { alert: "Your push message here!"}
-	}, { useMasterKey: true }, 
-	{
-	success: function() {
-		response.success("pushed");
-	}, error: function(error) {
-		reponse.error("didn't push");
-	}
-});
+    var pushQuery = new Parse.Query(Parse.Installation);
+    pushQuery..equalTo("user",user);
 
-//return 'Hi Foodiee!';
+    return Parse.Push.send({
+        where: pushQuery,
+        data: {
+            alert: "Your push message here!"
+        }
+    }, {
+        useMasterKey: true
+    }, {
+        success: function() {
+            response.success("pushed");
+        },
+        error: function(error) {
+            reponse.error("didn't push");
+        }
+    });
+
+    //return 'Hi Foodiee!';
 });
