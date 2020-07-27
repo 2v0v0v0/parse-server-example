@@ -1,7 +1,7 @@
 Parse.Cloud.define('hello', function(req, res) {
 	var pushQuery = new Parse.Query(Parse.Installation);
 // pushQuery.containedIn("user", userlist);
-Parse.Push.send({
+return Parse.Push.send({
 	where: pushQuery, 
 	data: {
 		alert: "Your push message here!"
@@ -14,5 +14,5 @@ Parse.Push.send({
 	}
 });
 
-return 'Hi Foodie!';
+//return 'Hi Foodiee!';
 });
