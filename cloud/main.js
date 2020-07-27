@@ -7,7 +7,7 @@ Parse.Cloud.define('hello', function(req, res) {
     Parse.Push.send({
         where: pushQuery,
         data: {
-            alert: "Your push message here!"
+            alert: user.get("username") + "Free hotdogs at the Parse concession stand!"
         }
     }, {
         useMasterKey: true
@@ -20,5 +20,5 @@ Parse.Cloud.define('hello', function(req, res) {
         }
     });
 
-    return user.username;
+    return reponse;
 });
