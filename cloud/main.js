@@ -22,7 +22,7 @@ Parse.Cloud.define('hello', function(req, res) {
         function(user)
         {
             response.success(user);
-            console.log("the user is... " + user);
+            console.log("the user is... " + user.get("username"));
         }
         ,
         function(error)
