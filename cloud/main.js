@@ -4,7 +4,7 @@ Parse.Cloud.define('hello', function(req, res) {
 
 	var query = new Parse.Query(Parse.User);
 	query.equalTo("username", "user2");  // find all the women
-	var women = await query.find();
+	
 
     var pushQuery = new Parse.Query(Parse.Installation);
     pushQuery.equalTo("user",user);
