@@ -5,14 +5,8 @@ Parse.Cloud.define('hello', function(req, response) {
 	console.log("Hello World");
 
 
-	var query = new Parse.Query(Parse.User);
-    query.equalTo("objectId", userId);
-    var result = await query.first({ useMasterKey : true });
-
-    console.log("query",query);
-	console.log("result",result);
-
-	/*getUser(otherUserId).then
+	
+	getUser(otherUserId).then
     (   
         //When the promise is fulfilled function(res) fires, and now we have our USER!
         function(res)
@@ -25,7 +19,7 @@ Parse.Cloud.define('hello', function(req, response) {
         {
             response.error(err);
         }
-    );*/
+    );
     
 
 
