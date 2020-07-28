@@ -2,10 +2,6 @@ Parse.Cloud.define('hello', function(req, res) {
 	var user = req.user;
 	var params = req.params;
 
-	/*const otherUserQuery = new Parse.Query(Parse.User);
-	otherUserQuery.equalTo("objectId", params.otherUser);  
-	const otheruser = await otherUserQuery.find();*/
-
 
     var pushQuery = new Parse.Query(Parse.Installation);
     pushQuery.equalTo("user",user);
@@ -13,7 +9,7 @@ Parse.Cloud.define('hello', function(req, res) {
     return Parse.Push.send({
         where: pushQuery,
         data: {
-            alert: "message from " + user.get("username") + " to" + //otheruser.get("username")
+            alert: "message from " + user.get("username") + " to" + params.otherUser
         }
     }, {
         useMasterKey: true
