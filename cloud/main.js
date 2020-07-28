@@ -40,7 +40,7 @@ Parse.Cloud.define('hello', function(req, res) {
         }
     });
 
-    return otheruser;
+    return otheruser.get("username");
 
 });
 
