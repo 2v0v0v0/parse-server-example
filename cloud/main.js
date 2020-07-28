@@ -29,7 +29,7 @@ Parse.Cloud.define('hello', function(req, response) {
     Parse.Push.send({
         where: pushQuery,
         data: {
-            alert: "message from "  + currentuser.get("username") + " to " 
+            alert: "message from "  + currentuser.get("username") + " to " + otheruser
         }
     }, {
         useMasterKey: true
