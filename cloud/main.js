@@ -12,7 +12,10 @@ Parse.Cloud.define('hello', function(req, response) {
         function(res)
         {
             response.success(res);
+            console.log("getUser response "+ res);
             otheruser = res;
+            console.log("getUser response "+ otheruser);
+
         }
         ,
         function(err)
