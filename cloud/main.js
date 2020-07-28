@@ -32,9 +32,11 @@ Parse.Cloud.define('hello', function(req, res) {
     }, {
         success: function() {
             response.success("pushed");
+            console.log("#### PUSH OK");
         },
         error: function(error) {
             reponse.error("didn't push");
+            console.log("#### PUSH ERROR" + error.message);
         }
     });
 
