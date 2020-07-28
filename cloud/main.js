@@ -1,7 +1,7 @@
 Parse.Cloud.define('hello', function(req, res) {
 	var currentuser = req.user;
 	var otheruser;
-	var otherUserId = req.params.objectId;
+	var otherUserId = req.params.otherUser
 
 
 	getUser(otherUserId).then
@@ -10,6 +10,7 @@ Parse.Cloud.define('hello', function(req, res) {
         function(res)
         {
             response.success(res);
+            otheruser = res;
         }
         ,
         function(err)
@@ -25,7 +26,7 @@ Parse.Cloud.define('hello', function(req, res) {
     Parse.Push.send({
         where: pushQuery,
         data: {
-            alert: "message from " + currentuser.get("username") + " to " otherUserId
+            alert: "message from " + currentuser.get("username") + " to " 
         }
     }, {
         useMasterKey: true
