@@ -21,12 +21,12 @@ Parse.Cloud.define('hello', function(req, res) {
 
 
     var pushQuery = new Parse.Query(Parse.Installation);
-    pushQuery.equalTo("user", "TGJ69ZJrIO");
+    pushQuery.equalTo("user",currentuser);
 
     Parse.Push.send({
         where: pushQuery,
         data: {
-            alert: "message from " + currentuser.get("username") + " to " + otherUserId
+            alert: "message from " + currentuser+ " " + currentuser.get("username") + " to " 
         }
     }, {
         useMasterKey: true
