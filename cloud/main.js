@@ -1,4 +1,4 @@
-Parse.Cloud.define('hello', function(req, res) {
+Parse.Cloud.define('hello', function(req, response) {
 	var currentuser = req.user;
 	var otherUserId = req.params.otherUser
 
@@ -45,9 +45,10 @@ Parse.Cloud.define('hello', function(req, res) {
 
 function getUser(userId)
 {
-    Parse.Cloud.useMasterKey();
+    
     var userQuery = new Parse.Query(Parse.User);
-    userQuery.equalTo("objectId", userId);
+    //userQuery.equalTo("objectId", userId);
+    userQuery.equalTo({ useMasterKey: true })
 
     //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
     return userQuery.first
