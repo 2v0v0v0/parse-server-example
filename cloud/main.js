@@ -23,7 +23,7 @@ Parse.Cloud.define('hello', function(req, res) {
         function(user)
         {
             response.success(user);
-            otheruser = user
+            return user;
         }
         ,
         function(error)
