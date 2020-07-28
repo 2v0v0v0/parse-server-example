@@ -9,7 +9,7 @@ Parse.Cloud.define('hello', function(req, res) {
     var pushQuery = new Parse.Query(Parse.Installation);
     pushQuery.equalTo("user",user);
 
-    return Parse.Push.send({
+    Parse.Push.send({
         where: pushQuery,
         data: {
             alert: "message from " + user.get("username") + " to" + params.otherUser
@@ -24,5 +24,7 @@ Parse.Cloud.define('hello', function(req, res) {
             reponse.error("didn't push");
         }
     });
+
+    return women;
 
 });
