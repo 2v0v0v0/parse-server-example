@@ -1,6 +1,5 @@
 Parse.Cloud.define('hello', function(req, res) {
 	var currentuser = req.user;
-	var otheruser;
 	var otherUserId = req.params.otherUser
 
 
@@ -19,10 +18,10 @@ Parse.Cloud.define('hello', function(req, res) {
         }
     );*/
 
-    let query = new Parse.Query(Parse.User);
+    var query = new Parse.Query(Parse.User);
     query.equalTo("objectId", otherUserId);
-    let ou = await query.first({ useMasterKey: true });
-    return ou;
+    var otheruser = await query.first({ useMasterKey: true });
+    
 
 
     var pushQuery = new Parse.Query(Parse.Installation);
