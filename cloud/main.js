@@ -25,18 +25,16 @@ Parse.Cloud.define('hello', function(req, res) {
     Parse.Push.send({
         where: pushQuery,
         data: {
-            alert: "message from " + currentuser + " to " otherUserId
+            alert: "message from " + currentuser.get("username") + " to " otherUserId
         }
     }, {
         useMasterKey: true
     }, {
         success: function() {
             response.success("pushed");
-            console.log("#### PUSH OK");
         },
         error: function(error) {
             reponse.error("didn't push");
-            console.log("#### PUSH ERROR" + error.message);
         }
     });
 
