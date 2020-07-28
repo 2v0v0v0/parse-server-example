@@ -1,5 +1,6 @@
 Parse.Cloud.define('hello', function(req, res) {
-	var user = req.user;
+	var currentuser = req.user;
+	var otheruser;
 	var otherUserId = req.params.objectId;
 
 	/*Parse.Cloud.useMasterKey();
@@ -22,7 +23,7 @@ Parse.Cloud.define('hello', function(req, res) {
         function(user)
         {
             response.success(user);
-            console.log("the user is... " + user.get("username"));
+            otheruser = user
         }
         ,
         function(error)
@@ -38,7 +39,7 @@ Parse.Cloud.define('hello', function(req, res) {
     Parse.Push.send({
         where: pushQuery,
         data: {
-            alert: "message from " + user.get("username") + " to" 
+            alert: "message from " + currentuser.get("username") + " to " + otheruser.get("username")
         }
     }, {
         useMasterKey: true
