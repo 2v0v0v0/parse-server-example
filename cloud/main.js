@@ -2,7 +2,7 @@ Parse.Cloud.define('hello', function(req, res) {
 	var user = req.user;
 	var otherUserId = req.params.objectId;
 
-	Parse.Cloud.useMasterKey();
+	/*Parse.Cloud.useMasterKey();
 	var query = new Parse.Query(Parse.User);
 	query.equalTo("ObjectId", otherUserId);
 
@@ -14,7 +14,22 @@ Parse.Cloud.define('hello', function(req, res) {
 	    error: function(err) {
 	        response.error(err);
 	    }
-	});
+	});*/
+
+	getUser(otherUserId).then
+    (   
+        //When the promise is fulfilled function(user) fires, and now we have our USER!
+        function(user)
+        {
+            response.success(user);
+            console.log("the user is... " + user);
+        }
+        ,
+        function(error)
+        {
+            response.error(error);
+        }
+    );
 
 
     var pushQuery = new Parse.Query(Parse.Installation);
@@ -37,3 +52,24 @@ Parse.Cloud.define('hello', function(req, res) {
     });
 
 });
+
+function getUser(userId)
+{
+    Parse.Cloud.useMasterKey();
+    var userQuery = new Parse.Query(Parse.User);
+    userQuery.equalTo("objectId", userId);
+
+    //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
+    return userQuery.first
+    ({
+        success: function(userRetrieved)
+        {
+            //When the success method fires and you return userRetrieved you fulfill the above promise, and the userRetrieved continues up the chain.
+            return userRetrieved;
+        },
+        error: function(error)
+        {
+            return error;
+        }
+    });
+};
