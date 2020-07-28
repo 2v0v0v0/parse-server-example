@@ -10,7 +10,6 @@ Parse.Cloud.define('hello', function(req, res) {
         function(res)
         {
             response.success(res);
-            return "hi"
         }
         ,
         function(err)
