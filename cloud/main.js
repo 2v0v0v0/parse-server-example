@@ -2,6 +2,8 @@ Parse.Cloud.define('hello', function(req, res) {
 	var currentuser = req.user;
 	var otherUserId = req.params.otherUser
 
+	console.log("Hello World");
+
 
 	getUser(otherUserId).then
     (   
@@ -33,7 +35,6 @@ Parse.Cloud.define('hello', function(req, res) {
     }, {
         success: function() {
             response.success("pushed");
-            console.log("#### PUSH OK");
         },
         error: function(error) {
             reponse.error("didn't push");
