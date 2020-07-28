@@ -39,7 +39,7 @@ Parse.Cloud.define('hello', function(req, res) {
     Parse.Push.send({
         where: pushQuery,
         data: {
-            alert: "message from " + currentuser.get("username") + " to " + otheruser.get("username")
+            alert: "message from " + currentuser.get("username") + " to "
         }
     }, {
         useMasterKey: true
@@ -51,6 +51,8 @@ Parse.Cloud.define('hello', function(req, res) {
             reponse.error("didn't push");
         }
     });
+
+    return otheruser;
 
 });
 
