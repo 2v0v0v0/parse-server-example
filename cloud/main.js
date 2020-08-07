@@ -5,6 +5,8 @@ Parse.Cloud.define('hello', function(req, response) {
 	console.log("Hello World");
 
 
+	var pushQuery = new Parse.Query(Parse.Installation);
+    pushQuery.equalTo("user",currentuser);
 	
 	getUser(otherUserId).then
     (   
@@ -13,15 +15,12 @@ Parse.Cloud.define('hello', function(req, response) {
         {
             response.success(res);
             console.log("getUser response "+ res.get("username"));
-            var otheruser = res;
+            otheruser = res;
             console.log("getUser response "+ otheruser);
-            var pushQuery = new Parse.Query(Parse.Installation);
-		    pushQuery.equalTo("user",currentuser);
-
-		    Parse.Push.send({
+            Parse.Push.send({
 		        where: pushQuery,
 		        data: {
-		            alert: "message from "  + currentuser.get("username") + " to " + otheruser
+		            alert: "message from "  + currentuser.get("username") + " to " + res
 		        }
 		    }, {
 		        useMasterKey: true
@@ -44,24 +43,9 @@ Parse.Cloud.define('hello', function(req, response) {
     
 
 
-    /*var pushQuery = new Parse.Query(Parse.Installation);
-    pushQuery.equalTo("user",currentuser);
+    
 
-    Parse.Push.send({
-        where: pushQuery,
-        data: {
-            alert: "message from "  + currentuser.get("username") + " to " + otherUserId
-        }
-    }, {
-        useMasterKey: true
-    }, {
-        success: function() {
-            response.success("pushed");
-        },
-        error: function(error) {
-            reponse.error("didn't push");
-        }
-    });*/
+   
 
 });
 
