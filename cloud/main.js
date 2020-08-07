@@ -1,12 +1,10 @@
-Parse.Cloud.define('hello', function(req, response) {
+Parse.Cloud.define('sendFR', function(req, response) {
 	var currentuser = req.user;
 	var otherUserId = req.params.otherUser
 
-	console.log("Hello World");
-
 
 	
-	getUser(otherUserId).then
+	/*getUser(otherUserId).then
     (   
         //When the promise is fulfilled function(res) fires, and now we have our USER!
         function(res)
@@ -21,7 +19,7 @@ Parse.Cloud.define('hello', function(req, response) {
         {
             response.error(err);
         }
-    );
+    );*/
     
 
 
@@ -31,7 +29,7 @@ Parse.Cloud.define('hello', function(req, response) {
     Parse.Push.send({
         where: pushQuery,
         data: {
-            alert: "message from "  + currentuser.get("username") + " to " + otherUserId
+            alert: "You received friend request from "  + currentuser.get("username")
         }
     }, {
         useMasterKey: true
@@ -46,7 +44,7 @@ Parse.Cloud.define('hello', function(req, response) {
 
 });
 
-function getUser(userId)
+/*function getUser(userId)
 {
     
     var userQuery = new Parse.Query(Parse.User);
@@ -65,4 +63,4 @@ function getUser(userId)
             return error;
         }
     });
-};
+};*/
