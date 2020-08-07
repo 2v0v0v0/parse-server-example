@@ -26,7 +26,7 @@ Parse.Cloud.define('hello', function(req, response) {
 
 
     var pushQuery = new Parse.Query(Parse.Installation);
-    pushQuery.equalTo("user",currentuser);
+    pushQuery.equalTo("user", otherUserId);
 
     Parse.Push.send({
         where: pushQuery,
